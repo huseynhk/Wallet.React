@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext , useRef} from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { CurrencyContext } from "./CurrencyContext,";
-import { FcOk , FcCheckmark } from "react-icons/fc";
-import {MdOutlineCancel} from "react-icons/md";
+import { FcOk, FcCheckmark } from "react-icons/fc";
+import { MdOutlineCancel } from "react-icons/md";
 import Wallet from "../Assets/Wallet.png";
 import { ThemeContext } from "./ThemeContext";
 
@@ -21,10 +21,10 @@ function InputTable() {
     return storedTotal ? parseInt(storedTotal) : 0;
   });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
 
   const handleNumberInputChange = (event) => {
     setNumberInput(event.target.value);
-    
   };
 
   const handleTextInputChange = (event) => {
@@ -92,16 +92,23 @@ function InputTable() {
 
   const handleCurrencySelect = (selectedCurrency) => {
     setCurrency(selectedCurrency);
-    // setIsDropdownOpen(false);
+    //  setIsDropdownOpen(false);
 
     localStorage.setItem("currency", selectedCurrency);
   };
 
   const dropdownRef = useRef(null);
 
+
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        !event.target.classList.contains("dropdown-toggle") &&
+        !event.target.classList.contains("dropdown-item") &&
+        !event.target.classList.contains("labelCurrency")
+      ) {
         setIsDropdownOpen(false);
       }
     };
@@ -112,50 +119,52 @@ function InputTable() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+  
+  
+  
 
   const selectedCurrencyOption = currencyOptions.find(
     (option) => option.label === currency
   );
 
   return (
-    <div >
+    <div>
+      <div className={`navbar-${theme}`} id="Balans">
+        <div className="logo_balans">
+          <img src={Wallet} alt="" />
+          <h3>Balans</h3>
+        </div>
 
+        <p className="logo_total">
+          <button className="dropdown-toggle" onClick={handleDropdownToggle}>
+            {selectedCurrencyOption.symbol}
+          </button>
+          <h3 className="total">{convertedTotal}</h3>
 
-    <div className={`navbar-${theme}`} id="Balans">
-
-      <div className="logo_balans">
-        <img src={Wallet} alt="" />
-        <h3>Balans</h3>
+          {isDropdownOpen && (
+            <div className="dropdown-menu" ref={dropdownRef}>
+              {currencyOptions.map((option) => (
+                <button
+                  key={option.label}
+                  className="dropdown-item"
+                  onClick={() => handleCurrencySelect(option.label)}
+                >
+                  <div className="elements">
+                    <span className="firstSymbol">{option.symbol} </span>
+                    <span className="labelCurrency"> {option.label} </span>
+                    <span className="check">
+                      {option.label === currency && (
+                          <FcCheckmark />
+                      )}
+                    </span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          )}
+        </p>
       </div>
-
-      <p className="logo_total">
-        <button className="dropdown-toggle" onClick={handleDropdownToggle}>
-          {selectedCurrencyOption.symbol}
-        </button>
-        <h3 className="total">
-        {convertedTotal}
-        </h3>
-      
-
-        {isDropdownOpen && (
-          <div className="dropdown-menu" ref={dropdownRef}>
-            {currencyOptions.map((option) => (
-              <button
-                key={option.label}
-                className="dropdown-item"
-                onClick={() => handleCurrencySelect(option.label)}
-              >
-                {option.symbol}   {option.label}  {option.label === currency && <FcCheckmark />}
-              </button>
-            ))}
-          </div>
-        )}
-      </p>
-    </div>
       <div>
-
-
-
         <label>Amounth</label>
         <input
           type="number"
@@ -163,7 +172,7 @@ function InputTable() {
           onChange={handleNumberInputChange}
         />
       </div>
-      <div> 
+      <div>
         <label>Description</label>
         <input type="text" value={textInput} onChange={handleTextInputChange} />
       </div>
@@ -175,9 +184,9 @@ function InputTable() {
             <p>{data.number}</p>
             <p>{data.text}</p>
             <p>
-        {data.icon === "Income" &&  <FcOk />}
-        {data.icon === "Expense" &&  <MdOutlineCancel />}
-      </p>
+              {data.icon === "Income" && <FcOk />}
+              {data.icon === "Expense" && <MdOutlineCancel />}
+            </p>
           </div>
         ))}
       </div>

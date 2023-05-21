@@ -13,7 +13,7 @@ const CurrencyProvider = ({ children }) => {
   const currencyOptions = [
     { label: "USD", symbol: "$", rate: 1 },
     { label: "EUR", symbol: "€", rate: 0.85 },
-    { label: "MAN", symbol: "₼", rate: 1.7 },
+    { label: "AZN", symbol: "₼", rate: 1.7 },
   ];
 
  

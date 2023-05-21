@@ -118,3 +118,51 @@
   margin-left: 10px;
   color: blue;
 }
+
+.dropdown-menu{
+  background-color: #ffffff;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  width: 170px;
+  align-items: start;
+  justify-content: center;
+  height: 120px;
+  position: absolute;
+  top: 175px;
+  right: 120px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.dropdown-item{
+  background-color: #fff;
+  border: none;
+}
+
+.elements {
+  display: flex;
+}
+
+.check{
+  margin-top: 11px;
+  margin-left:85px;
+  font-size: 18px;
+}
+
+.firstSymbol{
+  padding: 5px;
+  background-color: blue;
+  color: #fff;
+  height: 10px;
+  width: 10px;
+  line-height: 10px;
+  border-radius: 50%;
+  border: none;
+  font-size: 12px;
+  margin: 12px 10px 12px 0px;
+}
+
+.labelCurrency{
+  margin: 14.5px 0px;
+}
