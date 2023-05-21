@@ -16,11 +16,12 @@ const CurrencyProvider = ({ children }) => {
     { label: "MAN", symbol: "₼", rate: 1.7 },
   ];
 
+ 
   const getConvertedAmount = (amount) => {
-    const selectedCurrency = currencyOptions.find(
-      (option) => option.label === currency
-    );
-    return amount * selectedCurrency.rate;
+    const selectedCurrency = currencyOptions.find((option) => option.label === currency);
+    const convertedAmount = amount * selectedCurrency.rate;
+  
+    return convertedAmount.toFixed(2);
   };
 
   const handleCurrencyChange = (event) => {

@@ -1,10 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext , useRef} from "react";
 import { CurrencyContext } from "./CurrencyContext,";
 import { FcOk , FcCheckmark } from "react-icons/fc";
 import {MdOutlineCancel} from "react-icons/md";
-
+import Wallet from "../Assets/Wallet.png";
+import { ThemeContext } from "./ThemeContext";
 
 function InputTable() {
+  const { theme } = useContext(ThemeContext);
+
   const { currency, setCurrency, getConvertedAmount, currencyOptions } =
     useContext(CurrencyContext);
   const [numberInput, setNumberInput] = useState("");
@@ -21,6 +24,7 @@ function InputTable() {
 
   const handleNumberInputChange = (event) => {
     setNumberInput(event.target.value);
+    
   };
 
   const handleTextInputChange = (event) => {
@@ -88,40 +92,70 @@ function InputTable() {
 
   const handleCurrencySelect = (selectedCurrency) => {
     setCurrency(selectedCurrency);
-    setIsDropdownOpen(false);
+    // setIsDropdownOpen(false);
 
     localStorage.setItem("currency", selectedCurrency);
   };
+
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+  
+    document.addEventListener("mousedown", handleClickOutside);
+  
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const selectedCurrencyOption = currencyOptions.find(
     (option) => option.label === currency
   );
 
   return (
-    <div>
-      <div>
-      <p>
-           <button className="dropdown-toggle" onClick={handleDropdownToggle}>
-          {selectedCurrencyOption.symbol}
-          </button>
-          {convertedTotal}  
+    <div >
 
-          {isDropdownOpen && (
-            <div className="dropdown-menu">
-              {currencyOptions.map((option) => (
-              <button
-              key={option.label}
-              className="dropdown-item"
-              onClick={() => handleCurrencySelect(option.label)}
-            >
-            {option.symbol}   {option.label}  {option.label === currency && <FcCheckmark />}
-            </button>
-              ))}
-            </div>
-          )}
-        </p>
+
+    <div className={`navbar-${theme}`} id="Balans">
+
+      <div className="logo_balans">
+        <img src={Wallet} alt="" />
+        <h3>Balans</h3>
       </div>
+
+      <p className="logo_total">
+        <button className="dropdown-toggle" onClick={handleDropdownToggle}>
+          {selectedCurrencyOption.symbol}
+        </button>
+        <h3 className="total">
+        {convertedTotal}
+        </h3>
+      
+
+        {isDropdownOpen && (
+          <div className="dropdown-menu" ref={dropdownRef}>
+            {currencyOptions.map((option) => (
+              <button
+                key={option.label}
+                className="dropdown-item"
+                onClick={() => handleCurrencySelect(option.label)}
+              >
+                {option.symbol}   {option.label}  {option.label === currency && <FcCheckmark />}
+              </button>
+            ))}
+          </div>
+        )}
+      </p>
+    </div>
       <div>
+
+
+
         <label>Amounth</label>
         <input
           type="number"

@@ -66,4 +66,55 @@
     border: none;
     line-height: 2px;
 }
+
+#Balans{
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 30px;
+  border-radius: 8px;
+}
   
+
+.logo_balans{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo_balans img{
+  height: 32px;
+  width: 30px;
+}
+
+.logo_balans h3{
+ margin-left: 12px;
+ color: blue;
+}
+
+
+
+.logo_total{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown-toggle{
+  padding: 10px;
+  background-color: blue;
+  color: #fff;
+  height: 40px;
+  width: 40px;
+  line-height: 15px;
+  border-radius: 50%;
+  border: none;
+  font-size: 20px;
+}
+
+.total{
+  margin-left: 10px;
+  color: blue;
+}
