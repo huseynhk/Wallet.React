@@ -36,22 +36,22 @@ function InputTable() {
         text: textInput,
         icon: "Income",
       };
-  
+
       const storedData = localStorage.getItem("tableData");
       let updatedData = storedData ? JSON.parse(storedData) : [];
       updatedData.push(newData);
-  
+
       localStorage.setItem("tableData", JSON.stringify(updatedData));
-  
+
       setTableData(updatedData);
       setNumberInput("");
       setTextInput("");
       setTotal(total + parseInt(numberInput));
-  
+
       localStorage.setItem("total", total + parseInt(numberInput));
     }
   };
-  
+
   const handleSubtract = () => {
     if (numberInput.trim() !== "" && textInput.trim() !== "") {
       const subtractedNumber = parseInt(numberInput);
@@ -61,23 +61,23 @@ function InputTable() {
           text: textInput,
           icon: "Expense",
         };
-  
+
         const storedData = localStorage.getItem("tableData");
         let updatedData = storedData ? JSON.parse(storedData) : [];
         updatedData.push(newData);
-  
+
         localStorage.setItem("tableData", JSON.stringify(updatedData));
-  
+
         setTableData(updatedData);
         setTotal(total - subtractedNumber);
-  
+
         localStorage.setItem("total", total - subtractedNumber);
       }
       setNumberInput("");
       setTextInput("");
     }
   };
-  
+
   useEffect(() => {
     localStorage.setItem("tableData", JSON.stringify(tableData));
   }, [tableData]);
@@ -172,6 +172,7 @@ function InputTable() {
           )}
         </p>
       </div>
+      
       <div>
         <div id="mainContainer">
           <div id="leftSide" className={`navbar-${theme}`}>
