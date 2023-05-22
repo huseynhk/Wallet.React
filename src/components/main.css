@@ -389,7 +389,13 @@ input:checked + .slider:before {
 
 @media screen and (max-width: 912px) {
   #leftSide .description {
-    margin: 15px;
+    margin: 8px 18px 12px 12px;
+  }
+  #leftSide button {
+    width: 43%;
+    margin: 5px 4px 8px 6px; 
+    font-size: 12px;
+    padding: 4px 25px;
   }
 }
 
