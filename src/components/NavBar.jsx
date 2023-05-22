@@ -12,8 +12,8 @@ const NavBar = () => {
         <img className="logo" src={Sen} alt="" />
         <h2>Senior.Az</h2>
       </div>
-      {/* toggle-button - nin active-si  background-color: blue oldugu ucun active olanda mavi reng edecek */}
-      {/* toggle-icon - nun active-si color white oldugu ucun active olanda ag reng edecek */}
+      {/* toggle-button - nin active-i  background-color: blue oldugu ucun active olanda mavi reng edecek */}
+      {/* toggle-icon - nun active-i color white oldugu ucun active olanda ag reng edecek */}
 
       <div className="buttons">
         <button

@@ -4,6 +4,7 @@ import { FcOk, FcCheckmark } from "react-icons/fc";
 import { MdOutlineCancel } from "react-icons/md";
 import Wallet from "../Assets/Wallet.png";
 import { ThemeContext } from "./ThemeContext";
+import { TiCalculator } from "react-icons/ti";
 
 function InputTable() {
   const { theme } = useContext(ThemeContext);
@@ -21,7 +22,6 @@ function InputTable() {
     return storedTotal ? parseInt(storedTotal) : 0;
   });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  
 
   const handleNumberInputChange = (event) => {
     setNumberInput(event.target.value);
@@ -99,7 +99,6 @@ function InputTable() {
 
   const dropdownRef = useRef(null);
 
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -112,16 +111,13 @@ function InputTable() {
         setIsDropdownOpen(false);
       }
     };
-  
+
     document.addEventListener("mousedown", handleClickOutside);
-  
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  
-  
-  
 
   const selectedCurrencyOption = currencyOptions.find(
     (option) => option.label === currency
@@ -130,32 +126,42 @@ function InputTable() {
   return (
     <div>
       <div className={`navbar-${theme}`} id="Balans">
-        <div className="logo_balans">
+        <div id="logo_balans" className={theme}>
           <img src={Wallet} alt="" />
-          <h3>Balans</h3>
+          <h3 style={{ color: theme === "light" ? "blue" : "inherit" }}>
+            Balans
+          </h3>
         </div>
 
         <p className="logo_total">
           <button className="dropdown-toggle" onClick={handleDropdownToggle}>
             {selectedCurrencyOption.symbol}
           </button>
-          <h3 className="total">{convertedTotal}</h3>
+          <h3
+            style={{ color: theme === "light" ? "blue" : "inherit" }}
+            className="total"
+          >
+            {convertedTotal}
+          </h3>
 
           {isDropdownOpen && (
-            <div className="dropdown-menu" ref={dropdownRef}>
+            <div
+              id="dropdown-menu"
+              className={`navbar-${theme}`}
+              ref={dropdownRef}
+            >
               {currencyOptions.map((option) => (
                 <button
                   key={option.label}
-                  className="dropdown-item"
+                  className={`navbar-${theme}`}
+                  id="dropdown-item"
                   onClick={() => handleCurrencySelect(option.label)}
                 >
-                  <div className="elements">
+                  <div id="elements" className={`navbar-${theme}`}>
                     <span className="firstSymbol">{option.symbol} </span>
                     <span className="labelCurrency"> {option.label} </span>
                     <span className="check">
-                      {option.label === currency && (
-                          <FcCheckmark />
-                      )}
+                      {option.label === currency && <FcCheckmark />}
                     </span>
                   </div>
                 </button>
@@ -165,30 +171,52 @@ function InputTable() {
         </p>
       </div>
       <div>
-        <label>Amounth</label>
-        <input
-          type="number"
-          value={numberInput}
-          onChange={handleNumberInputChange}
-        />
-      </div>
-      <div>
-        <label>Description</label>
-        <input type="text" value={textInput} onChange={handleTextInputChange} />
-      </div>
-      <button onClick={handleSave}>Income</button>
-      <button onClick={handleSubtract}>Expense</button>
-      <div>
-        {tableData.map((data, index) => (
-          <div key={index}>
-            <p>{data.number}</p>
-            <p>{data.text}</p>
-            <p>
-              {data.icon === "Income" && <FcOk />}
-              {data.icon === "Expense" && <MdOutlineCancel />}
-            </p>
+        <div id="mainContainer" >
+          <div id="leftSide" className={`navbar-${theme}`}>
+            <h2>Operations</h2>
+            <label className="label">Amounth</label>
+            <input
+              type="number"
+              value={numberInput}
+              onChange={handleNumberInputChange}
+            />
+            <div>
+              <label className="label">Description</label>
+              <textarea
+                type="text"
+                value={textInput}
+                onChange={handleTextInputChange}
+                className="description"
+              />
+            </div>
+            <button className="Income" onClick={handleSave}>
+              <span className="icon">
+                <TiCalculator /> <span className="text">Income</span>
+              </span>{" "}
+            </button>
+            <button className="Expense" onClick={handleSubtract}>
+              <span className="icon">
+                <TiCalculator /> <span className="text">Expense</span>
+              </span>
+            </button>
+            <div></div>
           </div>
-        ))}
+
+          <div id="rightSide" className={`navbar-${theme}`}>
+            <h2>History</h2>
+            {tableData.map((data, index) => (
+              <div key={index} className="decArea">
+                {/* <p>{data.number}</p> */}
+                <p>
+                  {data.icon === "Income" && <FcOk />}
+                  {data.icon === "Expense" && <MdOutlineCancel />}
+                </p>
+                <p className="desText">{data.text}</p>
+
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

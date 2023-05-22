@@ -1,108 +1,111 @@
+
 .theme-light {
-    background-color: #ddf8f9;
-    color: #000000;
-  }
-  
-  .theme-dark {
-    background-color: #000000;
-    color: #ddf8f9;
-  }
-  
-  .navbar-light {
-    background-color: #fff;
-    color: #333;
-  }
-  
-  .navbar-dark {
-    background-color: #333;
-    color: #fff;
-  }
-  
-  .navbar-light .toggle-button {
-    color: blue;
-  }
-  
-  .navbar-dark .toggle-button {
-    color: #fff;
-  }
-  
-
-  .active {
-    background-color: blue;
-  }
-
-  .toggle-icon {
-    color: blue;
-  }
-  
-  .toggle-icon.active {
-    color: #fff;
-  }
-  
-
-.logo{
-    height: 40px;
-    width: 40px;
-    margin-right: 16px;
+  background-color: #e3e9e9;
+  color: #000000;
 }
 
-.mainSide{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.theme-dark {
+  background-color: #000000;
+  color: #e3e9e9;
 }
 
-#NavBar{
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px;
+.navbar-light {
+  background-color: #fff;
+  color: #333;
 }
 
-.buttons button{
-    padding: 4px 12px;
-    border-radius: 4px;
-    border: none;
-    line-height: 2px;
+.navbar-dark {
+  background-color: #333;
+  color: #fff;
 }
 
-#Balans{
+.navbar-light .toggle-button {
+  color: blue;
+}
+
+.navbar-dark .toggle-button {
+  color: #fff;
+}
+
+.active {
+  background-color: blue;
+}
+
+.toggle-icon {
+  color: blue;
+}
+
+.toggle-icon.active {
+  color: #fff;
+}
+
+.logo {
+  height: 40px;
+  width: 40px;
+  margin-right: 16px;
+}
+
+.mainSide {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#NavBar {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+}
+
+.buttons button {
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: none;
+  line-height: 2px;
+}
+
+#Balans {
   height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  margin: 30px;
-  border-radius: 8px;
+  margin: 29px 19px;
+  border-radius: 10px;
 }
-  
 
-.logo_balans{
+#logo_balans {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.logo_balans img{
+#logo_balans img {
   height: 32px;
   width: 30px;
 }
 
-.logo_balans h3{
- margin-left: 12px;
- color: blue;
+#logo_balans h3 {
+  margin-left: 12px;
 }
 
+.h3-light {
+  color: blue;
+}
 
+.total-light {
+  color: blue;
+}
 
-.logo_total{
+.logo_total {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.dropdown-toggle{
+.dropdown-toggle {
   padding: 10px;
   background-color: blue;
   color: #fff;
@@ -114,43 +117,42 @@
   font-size: 20px;
 }
 
-.total{
+.total {
   margin-left: 10px;
-  color: blue;
 }
 
-.dropdown-menu{
-  background-color: #ffffff;
+#dropdown-menu {
+  /* background-color: #ffffff; */
   padding: 10px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  width: 170px;
+  width: 180px;
   align-items: start;
   justify-content: center;
   height: 120px;
   position: absolute;
-  top: 175px;
-  right: 120px;
+  top: 180px;
+  right: 100px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.dropdown-item{
-  background-color: #fff;
+#dropdown-item {
+  /* background-color: #fff; */
   border: none;
 }
 
-.elements {
+#elements {
   display: flex;
 }
 
-.check{
+.check {
   margin-top: 11px;
-  margin-left:85px;
-  font-size: 18px;
+  margin-left: 90px;
+  font-size: 20px;
 }
 
-.firstSymbol{
+.firstSymbol {
   padding: 5px;
   background-color: blue;
   color: #fff;
@@ -163,6 +165,114 @@
   margin: 12px 10px 12px 0px;
 }
 
-.labelCurrency{
+.labelCurrency {
   margin: 14.5px 0px;
+}
+
+#mainContainer {
+  width: 100%;
+  height: 68vh;
+  display: flex;
+  justify-content: space-around;
+}
+
+#leftSide {
+  width: 30%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.label {
+  float: left;
+  margin-left: 14px;
+  margin-top: 14px;
+  font-size: 18px;
+}
+
+#leftSide input {
+  padding: 12px;
+  border-radius: 5px;
+  border: none;
+  width: 90%;
+  margin: 10px 0px;
+  background-color: rgb(232, 234, 236);
+}
+
+#leftSide .description {
+  padding: 12px;
+  border-radius: 5px;
+  border: none;
+  width: 90%;
+  margin: 10px 10px;
+  background-color: rgb(232, 234, 236);
+  resize: none; /* Optional: Disable textarea resizing */
+  display: flex;
+  align-items: flex-start;
+  height: 100px;
+}
+
+#leftSide .description textarea {
+  width: 100%;
+  height: 100%;
+  line-height: normal;
+}
+#leftSide h2 {
+  text-align: start;
+  margin-left: 14px;
+}
+
+
+#leftSide button {
+  padding: 8px 30px;
+  border-radius: 6px;
+  width: 45%;
+  margin: 25px 10px;
+  border: none;
+  font-size: 16px;
+}
+
+.Income {
+  background-color: rgb(12, 218, 5);
+  color: #fef1f1;
+}
+
+.Expense {
+  background-color: rgb(237, 18, 36);
+  color: #fef1f1;
+}
+
+#leftSide .icon {
+  font-size: 24px;
+  color: #fef1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  font-size: 16px;
+  margin-left: 12px;
+}
+
+#rightSide {
+  width: 65%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+#rightSide h2 {
+  text-align: start;
+  margin-left: 14px;
+}
+.decArea{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-left: 14px;
+}
+
+.desText{
+  margin-left: 16px;
+  margin-bottom: 24px;
+  font-size: 18px;
 }
