@@ -184,8 +184,7 @@
 
 .label {
   float: left;
-  margin-left: 14px;
-  margin-top: 14px;
+  margin: 14px 0px 20px 14px;
   font-size: 18px;
 }
 
@@ -243,7 +242,6 @@
 
 #leftSide .icon {
   font-size: 24px;
-  color: #fef1f1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -276,3 +274,79 @@
   margin-bottom: 24px;
   font-size: 18px;
 }
+
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width:90px;
+  height: 30px;
+}
+
+.switch.light .slider {
+  background-color: #ccc;
+}
+
+.switch.dark .slider {
+  background-color: #555;
+}
+
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.slider.round span {
+  width: 50%;
+  height: 100%;
+}
+
+.toggle-icon {
+  color: #fff;
+
+}
+
+.toggle-icon.active {
+  color: #fff;
+  width:50px;
+  height: 30px;
+  border-radius: 6px;
+}
+
+.slider.round span {
+ font-size: 20px;
+}
+

@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { CurrencyContext } from "./CurrencyContext,";
-import { FcOk, FcCheckmark } from "react-icons/fc";
-import { MdOutlineCancel } from "react-icons/md";
+import { FcCheckmark } from "react-icons/fc";
 import Wallet from "../Assets/Wallet.png";
+import Vector from "../Assets/Vector.png";
 import { ThemeContext } from "./ThemeContext";
-import { TiCalculator } from "react-icons/ti";
 
 function InputTable() {
   const { theme } = useContext(ThemeContext);
@@ -30,52 +29,55 @@ function InputTable() {
   const handleTextInputChange = (event) => {
     setTextInput(event.target.value);
   };
-
   const handleSave = () => {
-    const newData = {
-      number: parseInt(numberInput),
-      text: textInput,
-      icon: "Income",
-    };
-
-    const storedData = localStorage.getItem("tableData");
-    let updatedData = storedData ? JSON.parse(storedData) : [];
-    updatedData.push(newData);
-
-    localStorage.setItem("tableData", JSON.stringify(updatedData));
-
-    setTableData(updatedData);
-    setNumberInput("");
-    setTextInput("");
-    setTotal(total + parseInt(numberInput));
-
-    localStorage.setItem("total", total + parseInt(numberInput));
-  };
-
-  const handleSubtract = () => {
-    const subtractedNumber = parseInt(numberInput);
-    if (!isNaN(subtractedNumber)) {
+    if (numberInput.trim() !== "" && textInput.trim() !== "") {
       const newData = {
-        number: -subtractedNumber,
+        number: parseInt(numberInput),
         text: textInput,
-        icon: "Expense",
+        icon: "Income",
       };
-
+  
       const storedData = localStorage.getItem("tableData");
       let updatedData = storedData ? JSON.parse(storedData) : [];
       updatedData.push(newData);
-
+  
       localStorage.setItem("tableData", JSON.stringify(updatedData));
-
+  
       setTableData(updatedData);
-      setTotal(total - subtractedNumber);
-
-      localStorage.setItem("total", total - subtractedNumber);
+      setNumberInput("");
+      setTextInput("");
+      setTotal(total + parseInt(numberInput));
+  
+      localStorage.setItem("total", total + parseInt(numberInput));
     }
-    setNumberInput("");
-    setTextInput("");
   };
-
+  
+  const handleSubtract = () => {
+    if (numberInput.trim() !== "" && textInput.trim() !== "") {
+      const subtractedNumber = parseInt(numberInput);
+      if (!isNaN(subtractedNumber)) {
+        const newData = {
+          number: -subtractedNumber,
+          text: textInput,
+          icon: "Expense",
+        };
+  
+        const storedData = localStorage.getItem("tableData");
+        let updatedData = storedData ? JSON.parse(storedData) : [];
+        updatedData.push(newData);
+  
+        localStorage.setItem("tableData", JSON.stringify(updatedData));
+  
+        setTableData(updatedData);
+        setTotal(total - subtractedNumber);
+  
+        localStorage.setItem("total", total - subtractedNumber);
+      }
+      setNumberInput("");
+      setTextInput("");
+    }
+  };
+  
   useEffect(() => {
     localStorage.setItem("tableData", JSON.stringify(tableData));
   }, [tableData]);
@@ -171,7 +173,7 @@ function InputTable() {
         </p>
       </div>
       <div>
-        <div id="mainContainer" >
+        <div id="mainContainer">
           <div id="leftSide" className={`navbar-${theme}`}>
             <h2>Operations</h2>
             <label className="label">Amounth</label>
@@ -191,12 +193,13 @@ function InputTable() {
             </div>
             <button className="Income" onClick={handleSave}>
               <span className="icon">
-                <TiCalculator /> <span className="text">Income</span>
-              </span>{" "}
+                <img src={Vector} alt="" /> <span className="text">Income</span>
+              </span>
             </button>
             <button className="Expense" onClick={handleSubtract}>
               <span className="icon">
-                <TiCalculator /> <span className="text">Expense</span>
+                <img src={Vector} alt="" />{" "}
+                <span className="text">Expense</span>
               </span>
             </button>
             <div></div>
@@ -208,11 +211,43 @@ function InputTable() {
               <div key={index} className="decArea">
                 {/* <p>{data.number}</p> */}
                 <p>
-                  {data.icon === "Income" && <FcOk />}
-                  {data.icon === "Expense" && <MdOutlineCancel />}
+                  {data.icon === "Income" && (
+                    <svg
+                      width="44"
+                      height="44"
+                      viewBox="0 0 44 44"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle cx="22" cy="22" r="22" fill="#DBF5E4" />
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M33.6667 22C33.6667 28.4433 28.4434 33.6667 22 33.6667C15.5567 33.6667 10.3334 28.4433 10.3334 22C10.3334 15.5567 15.5567 10.3333 22 10.3333C28.4434 10.3333 33.6667 15.5567 33.6667 22ZM26.7021 18.4646C27.0438 18.8063 27.0438 19.3603 26.7021 19.702L20.8688 25.5354C20.5271 25.8771 19.973 25.8771 19.6313 25.5354L17.298 23.202C16.9563 22.8603 16.9563 22.3063 17.298 21.9646C17.6397 21.6229 18.1937 21.6229 18.5354 21.9646L20.25 23.6792L22.8573 21.0719L25.4647 18.4646C25.8064 18.1229 26.3604 18.1229 26.7021 18.4646Z"
+                        fill="#30CE0A"
+                      />
+                    </svg>
+                  )}
+
+                  {data.icon === "Expense" && (
+                    <svg
+                      width="44"
+                      height="44"
+                      viewBox="0 0 44 44"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle cx="22" cy="22" r="22" fill="#FFDADA" />
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M33.6668 22C33.6668 28.4433 28.4435 33.6667 22.0002 33.6667C15.5568 33.6667 10.3335 28.4433 10.3335 22C10.3335 15.5567 15.5568 10.3333 22.0002 10.3333C28.4435 10.3333 33.6668 15.5567 33.6668 22ZM18.4647 18.4646C18.8064 18.1229 19.3605 18.1229 19.7022 18.4646L22.0001 20.7625L24.2981 18.4646C24.6398 18.1229 25.1938 18.1229 25.5355 18.4646C25.8772 18.8063 25.8772 19.3603 25.5355 19.702L23.2376 22L25.5355 24.2979C25.8772 24.6396 25.8772 25.1936 25.5355 25.5353C25.1938 25.877 24.6397 25.877 24.298 25.5353L22.0001 23.2374L19.7022 25.5354C19.3605 25.8771 18.8065 25.8771 18.4648 25.5354C18.123 25.1936 18.123 24.6396 18.4648 24.2979L20.7627 22L18.4647 19.702C18.123 19.3603 18.123 18.8063 18.4647 18.4646Z"
+                        fill="#FE1E46"
+                      />
+                    </svg>
+                  )}
                 </p>
                 <p className="desText">{data.text}</p>
-
               </div>
             ))}
           </div>
