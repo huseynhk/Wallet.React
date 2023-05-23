@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "./ThemeContext";
-import { FaSun, FaMoon } from "react-icons/fa";
+import { BsSunFill, BsMoonFill } from "react-icons/bs";
+
 
 
 const NavBar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   const svgStyle = {
-    marginRight: '10px',
-    marginTop: '5px',
+    marginRight: '12px',
+    marginLeft: '17px',
   };
 
   return (
@@ -38,7 +39,7 @@ const NavBar = () => {
       {/* toggle-button - nin active-i  background-color: blue oldugu ucun active olanda mavi reng edecek */}
       {/* toggle-icon - nun active-i color white oldugu ucun active olanda ag reng edecek */}
 
-      <div className="buttons">
+    <div className="buttons">
     <label className={`switch ${theme}`}>
     <input
       type="checkbox"
@@ -46,8 +47,10 @@ const NavBar = () => {
       onChange={() => toggleTheme(theme === "dark" ? "light" : "dark")}
     />
     <span className="slider round">
-     <span className="iconSun"><FaSun className={`toggle-icon ${theme === "dark" ? "active" : ""}`} /></span>   
-     <span className="iconMoon" ><FaMoon className={`toggle-icon ${theme === "light" ? "active" : ""}`} /></span> 
+      <div className="parent">
+     <p id="iconSun" className={`toggle-icon ${theme === "dark" ? "active" : ""}`}><BsSunFill  /></p>   
+     <p id="iconMoon" className={`toggle-icon ${theme === "light" ? "active" : ""}`}><BsMoonFill  /></p> 
+     </div>
     </span>
 
   </label>

@@ -22,6 +22,8 @@ function InputTable() {
   });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+
+
   const handleNumberInputChange = (event) => {
     setNumberInput(event.target.value);
   };
@@ -56,6 +58,12 @@ function InputTable() {
     if (numberInput.trim() !== "" && textInput.trim() !== "") {
       const subtractedNumber = parseInt(numberInput);
       if (!isNaN(subtractedNumber)) {
+        const newTotal = total - subtractedNumber;
+        if (newTotal < 0) {
+          alert("Menfiye dusmek olmaz!");
+          return;
+        }
+
         const newData = {
           number: -subtractedNumber,
           text: textInput,
@@ -127,10 +135,11 @@ function InputTable() {
 
   return (
     <div>
+      
       <div className={`navbar-${theme}`} id="Balans">
         <div id="logo_balans" className={theme}>
           <img src={Wallet} alt="" />
-          <h3 style={{ color: theme === "light" ? "blue" : "inherit" }}>
+          <h3 style={{ color: theme === "light" ? "#0D99FF" : "inherit" }}>
             Balans
           </h3>
         </div>
@@ -140,7 +149,7 @@ function InputTable() {
             {selectedCurrencyOption.symbol}
           </button>
           <h3
-            style={{ color: theme === "light" ? "blue" : "inherit" }}
+            style={{ color: theme === "light" ? "#0D99FF" : "inherit" }}
             className="total"
           >
             {convertedTotal}
@@ -206,7 +215,8 @@ function InputTable() {
             <div></div>
           </div>
 
-          <div id="rightSide" className={`navbar-${theme}`}>
+          <div id="rightSide" className={`navbar-${theme}`} >
+       
             <h2>History</h2>
             {tableData.map((data, index) => (
               <div key={index} className="decArea">

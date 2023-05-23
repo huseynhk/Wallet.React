@@ -1,11 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body{
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+
 .theme-light {
-  background-color: #e3e9e9;
+  background-color: #F5F7FA;
   color: #000000;
 }
 
 .theme-dark {
   background-color: #000000;
-  color: #e3e9e9;
+  color: #F5F7FA;
 }
 
 .navbar-light {
@@ -19,7 +27,7 @@
 }
 
 .navbar-light .toggle-button {
-  color: blue;
+  color: #0D99FF;
 }
 
 .navbar-dark .toggle-button {
@@ -27,11 +35,11 @@
 }
 
 .active {
-  background-color: blue;
+  background-color: #0D99FF;
 }
 
 .toggle-icon {
-  color: blue;
+  color: #0D99FF;
 }
 
 .toggle-icon.active {
@@ -91,11 +99,11 @@
 }
 
 .h3-light {
-  color: blue;
+  color: #0D99FF;
 }
 
 .total-light {
-  color: blue;
+  color: #0D99FF;
 }
 
 .logo_total {
@@ -106,7 +114,7 @@
 
 .dropdown-toggle {
   padding: 10px;
-  background-color: blue;
+  background-color: #0D99FF;
   color: #fff;
   height: 40px;
   width: 40px;
@@ -151,7 +159,7 @@
 
 .firstSymbol {
   padding: 5px;
-  background-color: blue;
+  background-color: #0D99FF;
   color: #fff;
   height: 10px;
   width: 10px;
@@ -218,21 +226,21 @@
 }
 
 #leftSide button {
-  padding: 8px 30px;
+  padding: 12px 24px;
   border-radius: 6px;
-  width: 47%;
+  width: 46.5%;
   margin: 25px 6px;
   border: none;
   font-size: 16px;
 }
 
 .Income {
-  background-color: rgb(12, 218, 5);
+  background-color: #30CE0A;
   color: #fef1f1;
 }
 
 .Expense {
-  background-color: rgb(237, 18, 36);
+  background-color: #FE1E46;
   color: #fef1f1;
 }
 
@@ -252,8 +260,13 @@
   width: 65%;
   height: 100%;
   border-radius: 10px;
+  overflow-y: scroll;
+  text-align: justify;
 }
 
+#rightSide::-webkit-scrollbar {
+  width: 10px;
+}
 #rightSide h2 {
   text-align: start;
   margin-left: 14px;
@@ -261,14 +274,16 @@
 .decArea {
   display: flex;
   justify-content: start;
-  align-items: center;
   margin-left: 14px;
+  align-items: start;
+
 }
 
 .desText {
   margin-left: 16px;
-  margin-bottom: 24px;
-  font-size: 18px;
+  margin-right: 18px;
+  align-items: left;
+  resize: both;
 }
 
 .switch {
@@ -276,6 +291,7 @@
   display: inline-block;
   width: 90px;
   height: 30px;
+  margin-right: 17px;
 }
 
 .switch.light .slider {
@@ -314,28 +330,44 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
+
+.toggle-icon {
+  color: #2196f3;
+  margin-top:17.5px;
+  font-size: 105%;
+}
+.toggle-icon.active {
+  color: #fff;
+  width: 100%;
+  border-radius: 6px;
+}
 .slider.round {
   border-radius: 6px;
+  width: 90px;
+  height: 28px;
+}
+.parent{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+  height: 100%;
   width: 100%;
 }
 
-.slider.round span {
+#iconSun{
   width: 50%;
   height: 100%;
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-.toggle-icon {
-  color: #fff;
 }
-
-.toggle-icon.active {
-  color: #fff;
-  width: 50px;
-  height: 30px;
-  border-radius: 6px;
+#iconMoon{
+ width: 50%;
+ height: 100%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
 }
 
 .slider.round span {
@@ -345,7 +377,7 @@ input:checked + .slider:before {
 @media screen and (max-width: 1350px) {
   #leftSide button {
     width: 43%;
-    margin: 25px 4px;
+    margin: 25px 4.5px;
     font-size: 15px;
   }
   #leftSide .description {
@@ -363,13 +395,14 @@ input:checked + .slider:before {
 @media screen and (max-width: 1024px) {
   #leftSide button {
     width: 43%;
-    margin: 5px 4px 8px 4px; 
-    font-size: 15px;
+    margin: 7px 4px 8px 4px; 
+    font-size: 14px;
+    padding: 8px 20px;
   }
   #leftSide .description {
     width: 81%;
-    margin: 8px 15px;
-    height: 80px;
+    margin: 6px 15px;
+    height: 70px;
   }
 
   #leftSide input {
@@ -434,14 +467,14 @@ input:checked + .slider:before {
 
   #leftSide .description {
     width: 81%;
-    margin: 0px 15px 7px 45px;
-    height: 35px;
+    margin: 0px 15px 6px 45px;
+    height: 30px;
   }
 
   #leftSide input {
     width:81%;
     margin: 7px;
-    height: 2.5%;
+    height: 2%;
   }
 
   #leftSide button {
@@ -500,4 +533,34 @@ input:checked + .slider:before {
   }
 
 }
+
+@media screen and (max-width:380px) {
+
+  #leftSide {
+    width:91%;
+    height: 52%;
+  }
+
+
+  #leftSide input {
+    width:77%;
+    margin: 6px;
+    height: 2%;
+  }
+
+  #leftSide .description {
+    margin: 5px  30px;
+    width:76%;
+    height: 30px;
+  }
+
+  #leftSide button {
+    padding: 4px 12px;
+    font-size: 12px;
+    width: 40%;
+    margin-bottom: 6px;
+  }
+  
+}
+
 
