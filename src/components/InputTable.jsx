@@ -22,8 +22,6 @@ function InputTable() {
   });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-
-
   const handleNumberInputChange = (event) => {
     setNumberInput(event.target.value);
   };
@@ -108,6 +106,7 @@ function InputTable() {
   };
 
   const dropdownRef = useRef(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -119,10 +118,18 @@ function InputTable() {
         !event.target.classList.contains("labelCurrency")
       ) {
         setIsDropdownOpen(false);
+
+        if (inputRef.current) {
+          inputRef.current.focus();
+        }
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
+    
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -135,7 +142,6 @@ function InputTable() {
 
   return (
     <div>
-      
       <div className={`navbar-${theme}`} id="Balans">
         <div id="logo_balans" className={theme}>
           <img src={Wallet} alt="" />
@@ -181,7 +187,7 @@ function InputTable() {
           )}
         </p>
       </div>
-      
+
       <div>
         <div id="mainContainer">
           <div id="leftSide" className={`navbar-${theme}`}>
@@ -191,6 +197,7 @@ function InputTable() {
               type="number"
               value={numberInput}
               onChange={handleNumberInputChange}
+              ref={inputRef}
             />
             <div>
               <label className="label">Description</label>
@@ -215,8 +222,7 @@ function InputTable() {
             <div></div>
           </div>
 
-          <div id="rightSide" className={`navbar-${theme}`} >
-       
+          <div id="rightSide" className={`navbar-${theme}`}>
             <h2>History</h2>
             {tableData.map((data, index) => (
               <div key={index} className="decArea">
