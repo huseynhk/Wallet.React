@@ -5,29 +5,22 @@ const CurrencyContext = createContext();
 const CurrencyProvider = ({ children }) => {
   const [currency, setCurrency] = useState(() => {
     const storedCurrency = localStorage.getItem("currency");
-    return storedCurrency ? storedCurrency : "USD"; // Set a default currency value if none is found in localStorage
+    return storedCurrency ? storedCurrency : "USD"; // Basqa bir Currency secmisikse onu qaytarsin eks halda Dollari qaytarsin
   });
 
-  const [currencyLabel, setCurrencyLabel] = useState("USD");
+  const [currencyLabel] = useState("USD");
 
   const currencyOptions = [
     { label: "USD", symbol: "$", rate: 1 },
     { label: "EUR", symbol: "€", rate: 0.85 },
     { label: "AZN", symbol: "₼", rate: 1.7 },
   ];
-
  
   const getConvertedAmount = (amount) => {
     const selectedCurrency = currencyOptions.find((option) => option.label === currency);
-    const convertedAmount = amount * selectedCurrency.rate;
+    const convertedAmount = amount * selectedCurrency.rate; // Daxil ona deyeri Currency-e vursun
   
     return convertedAmount.toFixed(2);
-  };
-
-  const handleCurrencyChange = (event) => {
-    const selectedCurrencyLabel = event.target.value;
-    setCurrency(selectedCurrencyLabel);
-    setCurrencyLabel(selectedCurrencyLabel);
   };
 
   const value = {
@@ -36,7 +29,6 @@ const CurrencyProvider = ({ children }) => {
     currencyOptions,
     setCurrency,
     getConvertedAmount,
-    handleCurrencyChange,
   };
 
   return (

@@ -7,20 +7,21 @@ import { ThemeContext } from "./ThemeContext";
 
 function InputTable() {
   const { theme } = useContext(ThemeContext);
-
-  const { currency, setCurrency, getConvertedAmount, currencyOptions } =
-    useContext(CurrencyContext);
+  const {currency, setCurrency, getConvertedAmount, currencyOptions} = useContext(CurrencyContext);
   const [numberInput, setNumberInput] = useState("");
   const [textInput, setTextInput] = useState("");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const [tableData, setTableData] = useState(() => {
     const storedData = localStorage.getItem("tableData");
     return storedData ? JSON.parse(storedData) : [];
   });
+
   const [total, setTotal] = useState(() => {
     const storedTotal = localStorage.getItem("total");
     return storedTotal ? parseInt(storedTotal) : 0;
   });
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
 
   const handleNumberInputChange = (event) => {
     setNumberInput(event.target.value);
@@ -29,8 +30,10 @@ function InputTable() {
   const handleTextInputChange = (event) => {
     setTextInput(event.target.value);
   };
+  
   const handleSave = () => {
     if (numberInput.trim() !== "" && textInput.trim() !== "") {
+
       const newData = {
         number: parseInt(numberInput),
         text: textInput,
@@ -40,14 +43,12 @@ function InputTable() {
       const storedData = localStorage.getItem("tableData");
       let updatedData = storedData ? JSON.parse(storedData) : [];
       updatedData.push(newData);
-
       localStorage.setItem("tableData", JSON.stringify(updatedData));
 
       setTableData(updatedData);
       setNumberInput("");
       setTextInput("");
       setTotal(total + parseInt(numberInput));
-
       localStorage.setItem("total", total + parseInt(numberInput));
     }
   };
@@ -61,7 +62,6 @@ function InputTable() {
           alert("Menfiye dusmek olmaz!");
           return;
         }
-
         const newData = {
           number: -subtractedNumber,
           text: textInput,
@@ -71,12 +71,10 @@ function InputTable() {
         const storedData = localStorage.getItem("tableData");
         let updatedData = storedData ? JSON.parse(storedData) : [];
         updatedData.push(newData);
-
         localStorage.setItem("tableData", JSON.stringify(updatedData));
 
         setTableData(updatedData);
         setTotal(total - subtractedNumber);
-
         localStorage.setItem("total", total - subtractedNumber);
       }
       setNumberInput("");
@@ -90,10 +88,6 @@ function InputTable() {
 
   const convertedTotal = getConvertedAmount(total);
 
-  // const handleCurrencyChange = (event) => {
-  //   setCurrency(event.target.value);
-  // };
-
   const handleDropdownToggle = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
@@ -101,7 +95,6 @@ function InputTable() {
   const handleCurrencySelect = (selectedCurrency) => {
     setCurrency(selectedCurrency);
     //  setIsDropdownOpen(false);
-
     localStorage.setItem("currency", selectedCurrency);
   };
 
@@ -145,7 +138,7 @@ function InputTable() {
       <div className={`navbar-${theme}`} id="Balans">
         <div id="logo_balans" className={theme}>
           <img src={Wallet} alt="" />
-          <h3 style={{ color: theme === "light" ? "#0D99FF" : "inherit" }}>
+          <h3 style={{ color: theme === "light" ? "inherit" : "#0D99FF"}}>
             Balans
           </h3>
         </div>
@@ -155,7 +148,7 @@ function InputTable() {
             {selectedCurrencyOption.symbol}
           </button>
           <h3
-            style={{ color: theme === "light" ? "#0D99FF" : "inherit" }}
+            style={{ color: theme === "light" ? "inherit" : "#0D99FF" }}
             className="total"
           >
             {convertedTotal}
@@ -191,16 +184,17 @@ function InputTable() {
       <div>
         <div id="mainContainer">
           <div id="leftSide" className={`navbar-${theme}`}>
-            <h2>Operations</h2>
-            <label className="label">Amounth</label>
+            <h2>Əməliyyatlar</h2>
+            <label className="label">Amount</label>
             <input
               type="number"
               value={numberInput}
               onChange={handleNumberInputChange}
               ref={inputRef}
+              min={0}
             />
             <div>
-              <label className="label">Description</label>
+              <label className="label2">Description</label>
               <textarea
                 type="text"
                 value={textInput}
@@ -223,7 +217,7 @@ function InputTable() {
           </div>
 
           <div id="rightSide" className={`navbar-${theme}`}>
-            <h2>History</h2>
+            <h2>Tarixçə</h2>
             {tableData.map((data, index) => (
               <div key={index} className="decArea">
                 {/* <p>{data.number}</p> */}
@@ -273,5 +267,4 @@ function InputTable() {
     </div>
   );
 }
-
 export default InputTable;
