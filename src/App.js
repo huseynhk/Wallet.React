@@ -1,4 +1,3 @@
-import "./App.css";
 import InputTable from "./components/InputTable";
 import { CurrencyProvider } from "./components/CurrencyContext,";
 import { ThemeProvider } from "./components/ThemeContext";

@@ -5,6 +5,8 @@ body{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-align: center;
+
 }
 
 
@@ -20,7 +22,7 @@ body{
 
 .navbar-dark {
   background-color: #fff;
-  color: #5e6585;
+  color: #555F7D;
 }
 
 .navbar-light {
@@ -246,7 +248,6 @@ body{
 }
 
 
-
 .Income {
   background-color: #30CE0A;
   color: #fef1f1;
@@ -309,11 +310,10 @@ body{
 }
 
 .desText {
-  margin-left: 36px;
+  margin-left: 32px;
   margin-right: 18px;
   align-items: center;
   resize: both;
-  font-size:15px;
 }
 
 

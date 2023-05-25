@@ -40,8 +40,6 @@ const NavBar = () => {
         <label className={`switch ${theme}`}>
           <input
             type="checkbox"
-            // checked={theme === "dark"}
-            // onChange={() => toggleTheme(theme === "dark" ? "light" : "dark")}
             onChange={() => toggleTheme(theme)}
           />
           <span className="slider round">
