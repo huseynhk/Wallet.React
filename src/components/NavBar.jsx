@@ -7,7 +7,7 @@ const NavBar = () => {
 
   const svgStyle = {
     marginRight: "12px",
-    marginLeft: "19px",
+    marginLeft: "15px",
   };
 
   return (

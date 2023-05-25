@@ -4,6 +4,7 @@ import { FcCheckmark } from "react-icons/fc";
 import Wallet from "../Assets/Wallet.png";
 import Vector from "../Assets/Vector.png";
 import { ThemeContext } from "./ThemeContext";
+import Swal from 'sweetalert2';
 
 function InputTable() {
   const { theme } = useContext(ThemeContext);
@@ -24,7 +25,7 @@ function InputTable() {
 
 
   const handleNumberInputChange = (event) => {
-    setNumberInput(event.target.value);
+   setNumberInput(event.target.value);
   };
 
   const handleTextInputChange = (event) => {
@@ -33,25 +34,37 @@ function InputTable() {
   
   const handleSave = () => {
     if (numberInput.trim() !== "" && textInput.trim() !== "") {
-
       const newData = {
         number: parseInt(numberInput),
         text: textInput,
         icon: "Income",
       };
-
+  
       const storedData = localStorage.getItem("tableData");
       let updatedData = storedData ? JSON.parse(storedData) : [];
       updatedData.push(newData);
       localStorage.setItem("tableData", JSON.stringify(updatedData));
-
+  
       setTableData(updatedData);
       setNumberInput("");
       setTextInput("");
       setTotal(total + parseInt(numberInput));
       localStorage.setItem("total", total + parseInt(numberInput));
+  
+      Swal.fire({
+        icon: "success",
+        title: "Data Added",
+        text: "Your data has been successfully added.",
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Input",
+        text: "Please fill in all the required fields.",
+      });
     }
   };
+
 
   const handleSubtract = () => {
     if (numberInput.trim() !== "" && textInput.trim() !== "") {
@@ -59,27 +72,46 @@ function InputTable() {
       if (!isNaN(subtractedNumber)) {
         const newTotal = total - subtractedNumber;
         if (newTotal < 0) {
-          alert("Menfiye dusmek olmaz!");
+          Swal.fire({
+            icon: "error",
+            title: "Invalid Operation",
+            text: "Cannot subtract more than the current total.",
+          });
+          // setNumberInput("");
+          // setTextInput("");
           return;
         }
+        
         const newData = {
           number: -subtractedNumber,
           text: textInput,
           icon: "Expense",
         };
-
+  
         const storedData = localStorage.getItem("tableData");
         let updatedData = storedData ? JSON.parse(storedData) : [];
         updatedData.push(newData);
         localStorage.setItem("tableData", JSON.stringify(updatedData));
-
+  
         setTableData(updatedData);
         setTotal(total - subtractedNumber);
         localStorage.setItem("total", total - subtractedNumber);
+  
+        Swal.fire({
+          icon: "success",
+          title: "Data Subtracted",
+          text: "Your data has been successfully subtracted.",
+        });
       }
-      setNumberInput("");
-      setTextInput("");
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Input",
+        text: "Please fill in all the required fields.",
+      });
     }
+    setNumberInput("");
+    setTextInput("");
   };
 
   useEffect(() => {
@@ -220,7 +252,6 @@ function InputTable() {
             <h2>Tarixçə</h2>
             {tableData.map((data, index) => (
               <div key={index} className="decArea">
-                {/* <p>{data.number}</p> */}
                 <p>
                   {data.icon === "Income" && (
                     <svg
@@ -258,6 +289,7 @@ function InputTable() {
                     </svg>
                   )}
                 </p>
+                <p className="expenses">{data.number}</p>
                 <p className="desText">{data.text}</p>
               </div>
             ))}

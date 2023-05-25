@@ -3,6 +3,8 @@
 body{
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 
@@ -243,15 +245,34 @@ body{
   font-size: 16px;
 }
 
+
+
 .Income {
   background-color: #30CE0A;
   color: #fef1f1;
+  cursor: pointer;
+  transition: .5s ease;
 }
+
+
+.Income:hover {
+  background-color: #30ad11;
+  color: #fef1f1;
+}
+
 
 .Expense {
   background-color: #FE1E46;
   color: #fef1f1;
+  cursor: pointer;
+  transition: .5s ease;
 }
+
+.Expense:hover {
+  background-color: #e12043;
+  color: #fef1f1;
+}
+
 
 #leftSide .icon {
   font-size: 24px;
@@ -285,14 +306,21 @@ body{
   justify-content: start;
   margin-left: 14px;
   align-items: start;
-
 }
 
 .desText {
-  margin-left: 16px;
+  margin-left: 36px;
   margin-right: 18px;
-  align-items: left;
+  align-items: center;
   resize: both;
+  font-size:15px;
+}
+
+
+.expenses{
+  margin-left: 10px;
+  margin-top: 25px;
+  width: 40px;
 }
 
 .switch {
@@ -540,14 +568,46 @@ input:checked + .slider:before {
 
   #leftSide input {
     width:81%;
-    margin: 7px;
+    margin: 7px 15px 7px 11px;
     height: 2%;
   }
 
   #leftSide .description {
-    width:81%;
-    margin: 0px 14px 12px 25px;
+    width:81.5%;
+    margin: 0px 14px 12px 30px;
     height: 30px;
+  }
+
+
+}
+
+
+@media screen and (max-width:412px) {
+
+  #leftSide {
+    width:91%;
+    height: 50%;
+  }
+
+
+  #leftSide input {
+    width:76%;
+    margin: 7px 16px 7px 25px;
+    height: 2%;
+  }
+
+  #leftSide .description {
+    width:76%;
+    margin: 0px 18px 12px 35px;
+    height: 30px;
+  }
+
+  
+  #leftSide button {
+    padding: 5px 20px;
+    width: 38.5%;
+    margin: 10px ;
+    font-size:10px;
   }
 
 }
